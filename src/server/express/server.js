@@ -5,6 +5,8 @@ import { promDefaultMetrics } from './metrics/default';
 import { promEventLoopUtilization } from './metrics/elu';
 import { promRequestLatency, promTotalRequests } from './metrics/requests';
 
+import { router } from './endpoints/router';
+
 const register = new Registry();
 
 const app = express();
@@ -22,6 +24,8 @@ app.get('/metrics', async (req, res) => {
     res.status(500).end(e);
   }
 });
+
+app.use('/', router);
 
 const port = 8080;
 app.listen(port, () => {
