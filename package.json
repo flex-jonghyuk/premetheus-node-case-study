@@ -1,0 +1,25 @@
+{
+  "name": "node-monitoring-case-study",
+  "version": "1.0.0",
+  "description": "노드 모니터링 케이스 스터디",
+  "main": "index.js",
+  "type": "module",
+  "repository": "https://github.com/MaxKim-J/node-server-monitoring-case-study",
+  "author": "Max Kim",
+  "license": "MIT",
+  "scripts": {
+    "start:node": "node build.js && node dist/express.mjs",
+    "start:prom": "prometheus --config.file=prometheus.yml",
+    "start:k6": "k6 run src/test/k6.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.19.3",
+    "express": "^4.18.2",
+    "fastify": "^4.23.2",
+    "k6": "^0.0.0",
+    "prom-client": "^15.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}
