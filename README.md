@@ -10,7 +10,9 @@
 ## 기본 설정
 
 - 기본은 express 서버입니다.
-- [prom-client]()로 기본 매트릭을 추출하고,
+- [prom-client](https://github.com/siimon/prom-client)로 기본 매트릭을 추출하고, ELU, Request와 관련된 매트릭은 만들어서 제공합니다.
+- prometheus 매트릭을 사용해 grafana로 대시보드를 만듭니다.
+- [k6](https://k6.io/)를 사용해 아래 엔드포인트별 시나리오에 따른 부하 테스트를 해봅니다.
 
 ## 로직 유형
 
@@ -18,19 +20,33 @@
 
 엔드포인트: `/memory`
 
+#### 1-1) 메모리 leak으로 인한 OOM
+
+#### 1-2) 빈번한 GC 작업
+
 ### 2. CPU Usage의 증가(CPU Intensive Job)
 
 엔드포인트: `/cpu`
 
+#### 2-1) CPU Intensive JOB
+
 ### 3. Event Loop Lag의 증가
 
 엔드포인트: `/event-loop`
+
+#### 3-1) 무거운 동기 로직(동기 I/O 작업)
+
+#### 3-2) 긴 타이머(setTimeout)
+
+#### 3-3) 과도한 마이크로 태스크 큐 점유(Promise)
 
 ### 4. Active Resource의 증가
 
 엔드포인트: `/active-resource`
 
 #### 4-1) 소켓 연결 증가
+
+#### 4-2) 파일 디스크립터 사용 후 닫지 않음(I/O)
 
 ### 5. 서버 프레임워크별 차이
 

@@ -1,4 +1,4 @@
-import esbuild from "esbuild";
+import esbuild from 'esbuild';
 
 const requirePolyfill = `
   import path from 'path';
@@ -11,26 +11,26 @@ const requirePolyfill = `
 
 esbuild
   .build({
-    entryPoints: ["src/server/express.js"],
+    entryPoints: ['src/server/express/server.js'],
     bundle: true,
-    platform: "node",
-    target: "node16",
-    format: "esm",
+    platform: 'node',
+    target: 'node16',
+    format: 'esm',
     loader: {
-      ".js": "jsx",
-      ".jsx": "jsx",
+      '.js': 'jsx',
+      '.jsx': 'jsx',
     },
-    jsxFactory: "React.createElement",
-    jsxFragment: "React.Fragment",
-    outfile: "dist/server.mjs",
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+    outfile: 'dist/express.mjs',
     banner: {
       js: requirePolyfill,
     },
   })
   .then(() => {
-    console.info("[esbuild] 서버 빌드완료");
+    console.info('[esbuild] 서버 빌드완료');
   })
   .catch((e) => {
-    console.info("빌드실패");
+    console.info('빌드실패');
     process.exit(1);
   });
